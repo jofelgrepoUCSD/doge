@@ -47,7 +47,7 @@ class Signin extends Component {
                     </div>
 
                     <div className="input-field">
-                        <button className="btn pink lighthen-1 z-depth-0">Login</button>
+                        <button className="btn blue lighthen-1 z-depth-0">Login</button>
                     </div>
 
                 </form>

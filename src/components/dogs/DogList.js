@@ -1,12 +1,19 @@
 import React from 'react'
 import DogListSummary from './DogListSumary'
 
-const DogList = () => {
+// Projects && projects.map 
+// logic here is theat we dont want to loop 
+// if projects doesnt exist
+
+const DogList = ({ projects }) => {
     return (
         <div className="project-list section">
-            <DogListSummary />
-            <DogListSummary />
-            <DogListSummary />
+
+            {projects && projects.map(project => {
+                return (
+                    <DogListSummary project={project} key={project.id} />
+                )
+            })}
         </div>
     )
 }
