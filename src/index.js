@@ -13,10 +13,11 @@ import { Provider } from 'react-redux'
 // action creators that return a function
 import thunk from 'redux-thunk'
 
-// import firebase from 'firebase/app'
-import { createFireStoreInstance, reduxFirestore, getFirestore } from 'redux-firestore'
-import { ReactReduxFirebaseProvider, reactReduxFirebase, getFirebase } from 'react-redux-firebase'
+import { reduxFireStore, createFirestoreInstance } from 'redux-firestore'
+import { reactReduxFirebase, ReactReduxFirebaseProvider, getFirebase } from 'react-redux-firebase'
 import firebase from './config/fbConfig'
+import { isLoaded } from 'react-redux-firebase'
+import { useSelector } from 'react-redux'
 
 
 
@@ -28,18 +29,32 @@ import firebase from './config/fbConfig'
  so we pass in the fbConfig to the compose as well
 */
 const store = createStore(rootReducer,
-  compose(
-    applyMiddleware(thunk.withExtraArgument({ getFirebase })),
-    // reduxFirestore(firebase, fbConfig),
-  ) // end of compose()
+  applyMiddleware(thunk.withExtraArgument({ getFirebase }))
 ); // end of createStore()
+
+
+const config = {
+  userProfile: 'users', // where profiles are stored in database,
+  useFirestoreForProfile: true
+};
+
+
+
 
 const rrfProps = {
   firebase,
-  config: {},
+  config,
   dispatch: store.dispatch,
-  createFireStoreInstance
+  createFirestoreInstance,
 };
+
+function AuthIsLoaded({ children }) {
+  const auth = useSelector(state => state.firebase.auth)
+  if (!isLoaded(auth)) return <div>Loading</div>;
+  return children
+}
+
+
 
 
 /* This file kick start our project
@@ -50,7 +65,9 @@ const rrfProps = {
 ReactDOM.render(
   <Provider store={store}>
     <ReactReduxFirebaseProvider {...rrfProps}>
-      <App />
+      <AuthIsLoaded>
+        <App />
+      </AuthIsLoaded>
     </ReactReduxFirebaseProvider>
   </Provider>,
   document.getElementById('root')

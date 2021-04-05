@@ -1,5 +1,6 @@
 import React from 'react'
 import DogListSummary from './DogListSumary'
+import { Link } from 'react-router-dom'
 
 // Projects && projects.map 
 // logic here is theat we dont want to loop 
@@ -11,10 +12,12 @@ const DogList = ({ projects }) => {
 
             {projects && projects.map(project => {
                 return (
-                    <DogListSummary project={project} key={project.id} />
+                    <Link to={'/project/' + project.id} key={project.id}>
+                        < DogListSummary project={project} />
+                    </Link>
                 )
             })}
-        </div>
+        </div >
     )
 }
 

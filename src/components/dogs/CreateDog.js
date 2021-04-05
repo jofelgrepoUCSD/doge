@@ -11,6 +11,7 @@ import React, { Component } from 'react'
 import { createProject } from '../../store/actions/projectActions'
 // Again this import is so we can connect this component to the redux store
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 
 class CreateDog extends Component {
@@ -31,9 +32,13 @@ class CreateDog extends Component {
         e.preventDefault();
         //console.log(this.state)
         this.props.createProject(this.state)
+        // Direct user to homapage
+        this.props.history.push('/')
     }
 
     render() {
+        const { auth } = this.props
+        if (!auth.uid) return <Redirect to='signin' />
         return (
             <div className="container">
                 <form className="white" onSubmit={this.handleSubmit}>
@@ -63,6 +68,13 @@ class CreateDog extends Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
+
 const mapDispatchToProp = (dispatch) => {
     return {
         // dispatch(createProject(project))
@@ -72,5 +84,5 @@ const mapDispatchToProp = (dispatch) => {
 }
 
 // connect -> connects this component to the redux store
-export default connect(null, mapDispatchToProp)(CreateDog)
+export default connect(mapStateToProps, mapDispatchToProp)(CreateDog)
 

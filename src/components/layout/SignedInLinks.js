@@ -1,15 +1,25 @@
-import React from 'react'
+import React, { Profiler } from 'react'
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { signOut } from '../../store/actions/authAction'
 
 // We want to show a link that is styled to look like a user is signed in
-const SignedInLinks = () => {
+const SignedInLinks = (props) => {
     return (
-        <ul className="right">
+        < ul className="right" >
             <li><NavLink to='/create'>New Dog</NavLink></li>
-            <li><NavLink to='/'>Log Out</NavLink></li>
-            <li><NavLink to='/' className='btn btn-floating blue lighten-1'>PG</NavLink></li>
-        </ul>
+            <li><a onClick={props.signOut}>Log Out</a></li>
+            <li><NavLink to='/' className='btn btn-floating blue lighten-1'>
+                {props.profile.initials}
+            </NavLink></li>
+        </ul >
     )
 }
 
-export default SignedInLinks
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signOut: () => dispatch(signOut())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SignedInLinks)

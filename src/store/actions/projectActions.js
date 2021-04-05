@@ -1,20 +1,30 @@
-/* Action Creator that returns a function because of THUNK
-   All actions are created here
+/**
+   This file is an Action Creator that returns a function (thunk) 
+   All actions are created at this file
 */
 
-
+/**
+ *  This method is responsible on creating a project
+ *  by using the information of the user and user's input.
+ *  This is then stored in the firestore database by
+ *  getting an instance of the firestore and then using .add()
+ * 
+ * @param project contains the information the user filled up
+ */
 export const createProject = (project) => {
     return (dispatch, getState, { getFirebase }) => {
         // Make async call to database
-        // To do this we can import packages to make it simple
         const firestore = getFirebase().firestore();
+        const profile = getState().firebase.profile;
+        const authId = getState().firebase.auth.uid;
         firestore.collection('projects').add({
             ...project,
-            authorFirstName: 'Jofel',
-            authorLastName: 'Gerpo',
-            authorId: 12345,
+            authorFirstName: profile.firstName,
+            authorLastName: profile.lastName,
+            authorId: authId,
             createdAt: new Date()
         }).then(() => {
+            // Dispatch goes to reducers -> projectReducer
             dispatch({ type: 'CREATE_PROJECT', project });
         }).catch((err) => {
             dispatch({ type: 'CREATE_PROJECT_ERROR', err })
