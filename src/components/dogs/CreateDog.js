@@ -7,20 +7,25 @@ Add a dog with Dogname, breed and age
 
 */
 
-import React, { Component } from 'react'
+import React, { Component, useState} from 'react'
 import { createProject } from '../../store/actions/projectActions'
+
 // Again this import is so we can connect this component to the redux store
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import ImageUpload from './ImageUpload'
+import UploadImage from './UploadImage'
+import {render} from 'react-dom'
+import {storage} from '../../config/fbConfig';
 
 
 class CreateDog extends Component {
 
-    state = {
-        dogname: '',
-        breed: '',
-        age: '',
-    }
+    constructor(props) {
+        super(props);
+        this.state = {dogname:'',breed:'',age:'',url:''};
+        this.getDatafromChild = this.getDatafromChild.bind(this); 
+      }
 
     // Update the state of this compmonent to what the user type 
     handleChange = (e) => {
@@ -28,6 +33,11 @@ class CreateDog extends Component {
             [e.target.id]: e.target.value
         })
     }
+ 
+    getDatafromChild = (val) =>{
+        console.log(val);
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         //console.log(this.state)
@@ -42,6 +52,7 @@ class CreateDog extends Component {
         return (
             <div className="container">
                 <form className="white" onSubmit={this.handleSubmit}>
+
                     <h5 className="grey-text text-darken-3">Add a Doge</h5>
 
                     <div className="input-field">
@@ -58,10 +69,9 @@ class CreateDog extends Component {
                         <label htmlFor="Age">Age</label>
                         <textarea id="age" className="materialize-textarea" onChange={this.handleChange}></textarea>
                     </div>
+                    {/* <ImageUpload methodfromparent={this.getDatafromChild}/> */}
+                    <UploadImage methodfromparent={this.getDatafromChild}/>
 
-                    <div className="input-field">
-                        <button className="btn blue lighthen-1 z-depth-0">Create</button>
-                    </div>
 
                 </form>
             </div>

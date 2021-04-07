@@ -15,4 +15,7 @@ const DogListSumary = ({ project }) => {
     )
 }
 
+// add image here
+
+
 export default DogListSumary
