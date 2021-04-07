@@ -13,17 +13,18 @@ import { createProject } from '../../store/actions/projectActions'
 // Again this import is so we can connect this component to the redux store
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import ImageUpload from './ImageUpload'
 import UploadImage from './UploadImage'
+import DropDownDate from './../layout/DropDownDate'
 import {render} from 'react-dom'
 import {storage} from '../../config/fbConfig';
+import './../../style.css'
 
 
 class CreateDog extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {dogname:'',breed:'',age:'',url:''};
+        this.state = {dogname:'',breed:'',age:'',url:'',hobbies:'', nicknames:'',about:''};
         this.getDatafromChild = this.getDatafromChild.bind(this); 
       }
 
@@ -33,18 +34,26 @@ class CreateDog extends Component {
             [e.target.id]: e.target.value
         })
     }
+    componentDidUpdate(prevProps,prevState) {
+        if(this.state.url !== prevState.url){
+            this.props.createProject(this.state)
+        }
+    }
+
  
     getDatafromChild = (val) =>{
-        console.log(val);
+        this.setState({url:val})
+        this.props.history.push('/')
+
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        //console.log(this.state)
-        this.props.createProject(this.state)
+       // this.props.createProject(this.state)
         // Direct user to homapage
-        this.props.history.push('/')
+       // this.props.history.push('/')
     }
+
 
     render() {
         const { auth } = this.props
@@ -53,7 +62,7 @@ class CreateDog extends Component {
             <div className="container">
                 <form className="white" onSubmit={this.handleSubmit}>
 
-                    <h5 className="grey-text text-darken-3">Add a Doge</h5>
+                    <h5 className="addDogHeader">Add a Cute Doge</h5>
 
                     <div className="input-field">
                         <label htmlFor="dogname">Dog Name</label>
@@ -69,6 +78,22 @@ class CreateDog extends Component {
                         <label htmlFor="Age">Age</label>
                         <textarea id="age" className="materialize-textarea" onChange={this.handleChange}></textarea>
                     </div>
+
+                    <div className="input-field">
+                        <label htmlFor="hobbies">Hobbies</label>
+                        <input type="text" id="hobbies" onChange={this.handleChange} />
+                    </div>
+
+                    <div className="input-field">
+                        <label htmlFor="nicknames">Other names</label>
+                        <input type="text" id="nicknames" onChange={this.handleChange} />
+                    </div>
+
+                    <div className="input-field">
+                        <label htmlFor="about">Write Something about this Doge</label>
+                        <input type="text" id="about" onChange={this.handleChange} />
+                    </div>
+
                     {/* <ImageUpload methodfromparent={this.getDatafromChild}/> */}
                     <UploadImage methodfromparent={this.getDatafromChild}/>
 
