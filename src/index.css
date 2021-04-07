@@ -1,32 +1,34 @@
-html{
+html {
   min-height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url(/src/ghost_Dog.jpeg) no-repeat;
+  background: url(/src/ghost_Dog.jpeg) no-repeat bottom center;
   background-size: 30%;
+  background-attachment: fixed;
   background-position: right;
   background-position-y: 50px;
   background-color: rgb(233, 232, 231);
   min-height: 100%;
+  align-items: baseline;
 }
-form{
+form {
   padding: 20px;
   margin-top: 60px;
   background-color: rgb(233, 232, 231);
 }
-form button, form h5{
+form button,
+form h5 {
   margin: 20px 0;
 }
 
-
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

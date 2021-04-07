@@ -9,9 +9,8 @@ import { useEffect, useRef } from "react";
 class UploadImage extends Component {
     constructor() {
         super();
-        this.state = {image:[],url:''};
+        this.state = {image:[]};
         this.handleUpload = this.handleUpload.bind(this); 
-        this.handleChangeUrl = this.handleChangeUrl.bind(this); 
         this.handleChangeImage = this.handleChangeImage.bind(this); 
     };
 
@@ -23,11 +22,6 @@ class UploadImage extends Component {
           })
       }
     }
-
-    handleChangeUrl = (e) => {
-          this.props.methodfromparent(this.state.url);
-    }
-
     handleUpload = () => {
         const uploadTask = storage.ref(`images/${this.state.image.name}`).put(this.state.image);
         uploadTask.on(
@@ -41,11 +35,8 @@ class UploadImage extends Component {
               .ref("images")
               .child(this.state.image.name)
               .getDownloadURL()
-              .then(url => {
-                this.setState({
-                    url: url
-                  });
-                console.log(url)
+              .then(urll => {
+                this.props.methodfromparent(urll)
               })
           }
         );
@@ -59,7 +50,8 @@ class UploadImage extends Component {
                 <br></br>
                 <br></br>
                 <input type="file" id="image" onChange={this.handleChangeImage} />
-                <button className="btn blue lighthen-1 z-depth-0" onClick={() => { this.handleUpload(); this.handleChangeUrl();}}>Create</button>
+                {/* <button className="btn blue lighthen-1 z-depth-0" onClick={() => { this.handleUpload(); this.handleChangeUrl();}}>Create</button> */}
+                <button className="btn blue lighthen-1 z-depth-0" onClick={this.handleUpload}>Create</button>
             </div>
         </div>
         );
