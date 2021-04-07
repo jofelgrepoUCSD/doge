@@ -5,6 +5,7 @@ import firebase from '../../config/fbConfig';
 
 import { useEffect, useRef } from "react";
 
+// currently using this 
 class UploadImage extends Component {
     constructor() {
         super();
