@@ -14,9 +14,6 @@ import { createProject } from '../../store/actions/projectActions'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import UploadImage from './UploadImage'
-import DropDownDate from './../layout/DropDownDate'
-import {render} from 'react-dom'
-import {storage} from '../../config/fbConfig';
 import './../../style.css'
 
 
@@ -26,7 +23,7 @@ class CreateDog extends Component {
         super(props);
         this.state = {dogname:'',breed:'',age:'',url:'',hobbies:'', nicknames:'',about:''};
         this.getDatafromChild = this.getDatafromChild.bind(this); 
-      }
+    }
 
     // Update the state of this compmonent to what the user type 
     handleChange = (e) => {
@@ -49,9 +46,6 @@ class CreateDog extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-       // this.props.createProject(this.state)
-        // Direct user to homapage
-       // this.props.history.push('/')
     }
 
 

@@ -12,30 +12,41 @@
  * @param project contains the information the user filled up
  */
 export const createProject = (project) => {
+
     return (dispatch, getState, { getFirebase }) => {
-        // Make async call to database
+        //Make async call to database
         const firestore = getFirebase().firestore();
         const profile = getState().firebase.profile;
         const authId = getState().firebase.auth.uid;
-        firestore.collection('projects').add({
+        firestore.collection('projects').doc(project.dogname).set({
             ...project,
             authorFirstName: profile.firstName,
             authorLastName: profile.lastName,
             authorId: authId,
-            createdAt: new Date()
+            createdAt: new Date(),
         }).then(() => {
             // Dispatch goes to reducers -> projectReducer
             dispatch({ type: 'CREATE_PROJECT', project });
         }).catch((err) => {
             dispatch({ type: 'CREATE_PROJECT_ERROR', err })
-        })
+        });
     }
 };
 
 
 export const deleteProject = (project) => {
-    return (dispatch, getState) => {
-        // Make async call to database
-        dispatch({ type: 'DELETE_PROJECT', project });
+
+    return (dispatch, getState, { getFirebase }) => {
+        //Make async call to database
+        const firestore = getFirebase().firestore();
+        firestore.collection('projects')
+            .doc(project.dogname)
+            .delete().
+            then(() => {
+            // Dispatch goes to reducers -> projectReducser
+            dispatch({ type: 'DELETE_PROJECT', project });
+        }).catch((err) => {
+            dispatch({ type: 'DELETE_PROJECT_ERROR', err })
+        });
     }
 };
