@@ -5,24 +5,33 @@ import { useHistory } from "react-router-dom";
 
 // Again this import is so we can connect this component to the redux store
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import UploadImage from './UploadImage'
-import {render} from 'react-dom'
-import {storage} from '../../config/fbConfig';
+import firebase from 'firebase/app';
+import "firebase/auth";
 import './../../style.css'
 
 const DeleteDog = ({props,deleteProject}) => {
+
+    console.log(props)
+
+    let currUser = firebase.auth().currentUser.uid;
+    let projectUser = props.project.authorId;
+
 
     // lets us go back to the homescreen
     let history = useHistory();
 
     const handleDelete = () => {
-        deleteProject(props);
-        history.push('/');
+
+        if (currUser === projectUser){
+            deleteProject(props.project);
+            history.push('/');
+        }else {
+            alert("Access Denied you don't own this doggo");
+        }
     }
     return (
         <div>
-            <a href="#" class="delete-btn" onClick={ () => {if(window.confirm('Delete the item?')){handleDelete()};}}>Delete</a> 
+            <a href="#" className="delete-btn" onClick={ () => {if(window.confirm('Delete the item?')){handleDelete()};}}>Delete</a> 
         </div>
     )
 }
