@@ -59,7 +59,7 @@ class CreateDog extends Component {
                     <h5 className="addDogHeader">Add a Cute Doge</h5>
 
                     <div className="input-field">
-                        <label htmlFor="dogname">Dog Name</label>
+                        <label htmlFor="dogname">Dog Name (cant edit later)</label>
                         <input type="text" id="dogname" onChange={this.handleChange} />
                     </div>
 

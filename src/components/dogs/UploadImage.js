@@ -9,7 +9,7 @@ import { useEffect, useRef } from "react";
 class UploadImage extends Component {
     constructor() {
         super();
-        this.state = {image:[]};
+        this.state = {image:[],progress:''};
         this.handleUpload = this.handleUpload.bind(this); 
         this.handleChangeImage = this.handleChangeImage.bind(this); 
     };
@@ -26,7 +26,14 @@ class UploadImage extends Component {
         const uploadTask = storage.ref(`images/${this.state.image.name}`).put(this.state.image);
         uploadTask.on(
           "state_changed",
-          snapshot => {},
+          snapshot => {
+            const progress = Math.round(
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+            this.setState({
+              progress:progress
+            })
+          },
           error => {
             console.log(error);
           },
@@ -46,6 +53,7 @@ class UploadImage extends Component {
         return (
             <div>
             <div className="input-field">
+                <progress value={this.state.progress} max="100" />
                 <label htmlFor="img">Image</label>
                 <br></br>
                 <br></br>
