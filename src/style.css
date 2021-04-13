@@ -2,7 +2,7 @@
 
 .dogListPhoto {
   height: 500px;
-  width: 400px;
+  width: 460px;
   border: 3px;
   box-shadow: 10px 10px 5px #ccc;
 }
@@ -30,6 +30,16 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.dog-nn-detail {
+  font-size: 18px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  text-align: left;
+  display: block;
+  margin-left: 29%;
+}
+
 .dog-hobbies-detail {
   font-size: 18px;
   font-family: "Montserrat", sans-serif;
@@ -56,7 +66,7 @@
   margin-right: auto;
   width: 50%;
   height: 400px;
-  width: 300px;
+  width: 360px;
   border: 3px solid;
   border-color: rgb(180, 174, 168);
   box-shadow: 10px 10px 5px #ccc;

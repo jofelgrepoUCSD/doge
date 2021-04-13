@@ -5,7 +5,6 @@ import DogDetail from './components/dogs/DogDetail';
 import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import CreateDog from './components/dogs/CreateDog';
-import EditDog from './components/dogs/EditDog';
 import EditForm from './components/dogs/EditForm';
 // <Switch makes sure only one route is loaded at a time
 // Route exact make its load homepage when stricly '/' is on the path
@@ -21,7 +20,6 @@ function App() {
           <Route path="/signin" component={Signin} />
           <Route path="/signup" component={Signup} />
           <Route path="/create" component={CreateDog} />
-          <Route path= "/editDog" component={EditDog} />
           <Route path= "/editForm" component={EditForm} />
 
         </Switch>

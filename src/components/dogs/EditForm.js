@@ -51,7 +51,6 @@ const EditForm = ({props,editProject}) => {
 
     return (
         <div>
-            <p>EditForm</p>
             <div className="container">
                 <form className="white" onSubmit={handleEdit}>
 
@@ -59,7 +58,7 @@ const EditForm = ({props,editProject}) => {
 
                     <div className="input-field">
                         <label htmlFor="dogname">Dogname</label>
-                        <input type="text" id="dogname" onChange={e => {
+                        <input type="text" value={state.dogname} id="dogname" onChange={e => {
                             setState({
                                 ...state,
                                 dogname: e.target.value

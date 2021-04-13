@@ -43,6 +43,7 @@ const DogDetail = (props) => {
                         <img src={project.url} className="dogDetailImg"alt="firebase-image"/>
                         <br></br>
                         <span className="dog-name-detail">{project.dogname}</span>
+                        <span className="dog-nn-detail">{project.nicknames}</span>
                         <br></br>
                         <span className="dog-hobbies-detail"><strong>Breed: </strong>{project.breed}</span>
                         <span className="dog-hobbies-detail"><strong>Age: </strong>{project.age}</span>
