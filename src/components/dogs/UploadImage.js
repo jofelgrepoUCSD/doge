@@ -1,9 +1,6 @@
 import React, { Component, useState} from 'react';
-import {render} from 'react-dom'
-import {storage,firestore} from '../../config/fbConfig'
-import firebase from '../../config/fbConfig';
+import {storage} from '../../config/fbConfig'
 
-import { useEffect, useRef } from "react";
 
 // currently using this 
 class UploadImage extends Component {
@@ -59,7 +56,7 @@ class UploadImage extends Component {
                 <br></br>
                 <input type="file" id="image" onChange={this.handleChangeImage} />
                 {/* <button className="btn blue lighthen-1 z-depth-0" onClick={() => { this.handleUpload(); this.handleChangeUrl();}}>Create</button> */}
-                <button className="btn blue lighthen-1 z-depth-0" onClick={this.handleUpload}>Create</button>
+                <button className="btn blue lighthen-1 z-depth-0" onClick={this.handleUpload}>Confirm</button>
             </div>
         </div>
         );

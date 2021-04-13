@@ -1,20 +1,13 @@
 import { useHistory } from "react-router-dom";
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import moment from 'moment'
 import DeleteDog from './DeleteDog'
 import './../../style.css'
-import EditDog from "./EditDog";
-import EditForm from "./EditForm"
-import React, { Component, useState} from 'react'
+import React  from 'react'
 
 const DogDetail = (props) => {
-
-
-    console.log("PROPS:",props)
-
 
     const history = useHistory();
 
@@ -32,7 +25,8 @@ const DogDetail = (props) => {
                      url:props.project.url,
                      nicknames:props.project.nicknames,
                      about: props.project.about,
-                     authId: props.project.authorId 
+                     authId: props.project.authorId,
+                     identifier: props.project.identifier
                     }
         });
     }
@@ -49,6 +43,7 @@ const DogDetail = (props) => {
                         <img src={project.url} className="dogDetailImg"alt="firebase-image"/>
                         <br></br>
                         <span className="dog-name-detail">{project.dogname}</span>
+                        <span className="dog-nn-detail">{project.nicknames}</span>
                         <br></br>
                         <span className="dog-hobbies-detail"><strong>Breed: </strong>{project.breed}</span>
                         <span className="dog-hobbies-detail"><strong>Age: </strong>{project.age}</span>
@@ -76,7 +71,6 @@ const DogDetail = (props) => {
 
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state);
     const id = ownProps.match.params.id
     const projects = state.firestore.data.projects
     const project = projects ? projects[id] : null

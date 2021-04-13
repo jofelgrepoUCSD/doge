@@ -1,4 +1,4 @@
-import React, { Component, useState} from 'react'
+import React from 'react'
 import { deleteProject } from '../../store/actions/projectActions'
 
 import { useHistory } from "react-router-dom";
@@ -11,11 +11,8 @@ import './../../style.css'
 
 const DeleteDog = ({props,deleteProject}) => {
 
-    console.log(props)
-
     let currUser = firebase.auth().currentUser.uid;
     let projectUser = props.project.authorId;
-
 
     // lets us go back to the homescreen
     let history = useHistory();
