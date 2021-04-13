@@ -12,10 +12,6 @@ import React, { Component, useState} from 'react'
 
 const DogDetail = (props) => {
 
-
-    console.log("PROPS:",props)
-
-
     const history = useHistory();
 
     const handleBack = () => {
@@ -32,7 +28,8 @@ const DogDetail = (props) => {
                      url:props.project.url,
                      nicknames:props.project.nicknames,
                      about: props.project.about,
-                     authId: props.project.authorId 
+                     authId: props.project.authorId,
+                     identifier: props.project.identifier
                     }
         });
     }

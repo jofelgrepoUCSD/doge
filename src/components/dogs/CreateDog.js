@@ -10,10 +10,12 @@ Add a dog with Dogname, breed and age
 import React, { Component, useState} from 'react'
 import { createProject } from '../../store/actions/projectActions'
 
+
 // Again this import is so we can connect this component to the redux store
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import UploadImage from './UploadImage'
+import { v4 as uuidv4 } from 'uuid';
 import './../../style.css'
 
 
@@ -21,7 +23,7 @@ class CreateDog extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {dogname:'',breed:'',age:'',url:'',hobbies:'', nicknames:'',about:''};
+        this.state = {dogname:'',breed:'',age:'',url:'',hobbies:'', nicknames:'',about:'',identifier:uuidv4()};
         this.getDatafromChild = this.getDatafromChild.bind(this); 
     }
 

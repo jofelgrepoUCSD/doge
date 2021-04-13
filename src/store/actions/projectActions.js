@@ -17,13 +17,11 @@ export const createProject = (project) => {
 
     return (dispatch, getState, { getFirebase }) => {
 
-
-
         //Make async call to database
         const firestore = getFirebase().firestore();
         const profile = getState().firebase.profile;
         const authId = getState().firebase.auth.uid;
-        firestore.collection('projects').doc(project.dogname).set({
+        firestore.collection('projects').doc(project.identifier).set({
             ...project,
             authorFirstName: profile.firstName,
             authorLastName: profile.lastName,
@@ -51,7 +49,7 @@ export const deleteProject = (project) => {
 
         if (authId == project.authorId){
             firestore.collection('projects')
-                .doc(project.dogname)
+                .doc(project.identifier)
                 .delete().
                 then(() => {
                 // Dispatch goes to reducers -> projectReducser
@@ -79,7 +77,7 @@ export const editProject = (project) => {
         const profile = getState().firebase.profile;
         const authId = getState().firebase.auth.uid;
 
-        firestore.collection('projects').doc(project.dogname).update({
+        firestore.collection('projects').doc(project.identifier).update({
             ...project,
             authorFirstName: profile.firstName,
             authorLastName: profile.lastName,

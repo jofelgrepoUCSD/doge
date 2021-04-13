@@ -27,15 +27,12 @@ const EditForm = ({props,editProject}) => {
         hobbies: location.state.hobbies,
         nicknames: location.state.nicknames,
         about: location.state.about,
-    
+        identifier: location.state.identifier
     });
 
     const handleEdit = (e) => {
 
-        e.preventDefault()
-
-        // console.log("currUser is:",currUser)
-        // console.log(projectUser)
+        e.preventDefault();
         console.log("changedastate:", state)
 
         if (currUser === projectUser){
@@ -55,6 +52,15 @@ const EditForm = ({props,editProject}) => {
 
                     <h5 className="addDogHeader">Edit a Cute Doge</h5>
 
+                    <div className="input-field">
+                        <label htmlFor="dogname">Dogname</label>
+                        <input type="text" id="dogname" onChange={e => {
+                            setState({
+                                ...state,
+                                dogname: e.target.value
+                            }); 
+                          }} />
+                    </div>
         
                     <div className="input-field">
                         <label htmlFor="breed">Breed</label>
