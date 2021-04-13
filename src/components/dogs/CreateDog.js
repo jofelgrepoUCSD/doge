@@ -7,9 +7,8 @@ Add a dog with Dogname, breed and age
 
 */
 
-import React, { Component, useState} from 'react'
+import React, { Component} from 'react'
 import { createProject } from '../../store/actions/projectActions'
-
 
 // Again this import is so we can connect this component to the redux store
 import { connect } from 'react-redux'
@@ -39,11 +38,9 @@ class CreateDog extends Component {
         }
     }
 
- 
     getDatafromChild = (val) =>{
         this.setState({url:val})
         this.props.history.push('/')
-
     }
 
     handleSubmit = (e) => {
@@ -61,7 +58,7 @@ class CreateDog extends Component {
                     <h5 className="addDogHeader">Add a Cute Doge</h5>
 
                     <div className="input-field">
-                        <label htmlFor="dogname">Dog Name (cant edit later)</label>
+                        <label htmlFor="dogname">Dog Name</label>
                         <input type="text" id="dogname" onChange={this.handleChange} />
                     </div>
 

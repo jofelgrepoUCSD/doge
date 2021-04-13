@@ -1,14 +1,11 @@
 import { useHistory } from "react-router-dom";
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import moment from 'moment'
 import DeleteDog from './DeleteDog'
 import './../../style.css'
-import EditDog from "./EditDog";
-import EditForm from "./EditForm"
-import React, { Component, useState} from 'react'
+import React  from 'react'
 
 const DogDetail = (props) => {
 
@@ -73,7 +70,6 @@ const DogDetail = (props) => {
 
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state);
     const id = ownProps.match.params.id
     const projects = state.firestore.data.projects
     const project = projects ? projects[id] : null

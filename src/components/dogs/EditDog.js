@@ -1,6 +1,4 @@
 import React from 'react'
-import EditForm from './EditForm'
-import { Redirect, Link, Route } from 'react-router-dom'
 
 const EditDog = ({props}) => {
 

@@ -13,10 +13,7 @@
  */
 export const createProject = (project) => {
 
-
-
     return (dispatch, getState, { getFirebase }) => {
-
         //Make async call to database
         const firestore = getFirebase().firestore();
         const profile = getState().firebase.profile;
@@ -60,12 +57,8 @@ export const deleteProject = (project) => {
         } else {
             console.log("You are not current user!")
         }
-
-
-
     }
 };
-
 
 export const editProject = (project) => {
 
@@ -74,15 +67,10 @@ export const editProject = (project) => {
 
         //Make async call to database
         const firestore = getFirebase().firestore();
-        const profile = getState().firebase.profile;
         const authId = getState().firebase.auth.uid;
 
         firestore.collection('projects').doc(project.identifier).update({
             ...project,
-            authorFirstName: profile.firstName,
-            authorLastName: profile.lastName,
-            authorId: authId,
-            createdAt: new Date(),
             }).then(() => {
                 // Dispatch goes to reducers -> projectReducer
                 dispatch({ type: 'EDIT_PROJECT', project });

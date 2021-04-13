@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Notifications from './Notification'
 import DogList from '../dogs/DogList'
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
@@ -13,7 +12,6 @@ class DashBoard extends Component {
     render() {
         const { projects, auth } = this.props;
         if (!auth.uid) return <Redirect to='signin' />
-
         return (
             <div className="dashboard container">
 
@@ -36,7 +34,6 @@ class DashBoard extends Component {
  projects data on projectReducer (dummy)
 */
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         projects: state.firestore.ordered.projects,
         auth: state.firebase.auth
