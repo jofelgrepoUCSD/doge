@@ -1,5 +1,6 @@
 import React, { Component, useState} from 'react';
 import {storage} from '../../config/fbConfig'
+import './../../style.css'
 
 
 // currently using this 
@@ -56,7 +57,10 @@ class UploadImage extends Component {
                 <br></br>
                 <input type="file" id="image" onChange={this.handleChangeImage} />
                 {/* <button className="btn blue lighthen-1 z-depth-0" onClick={() => { this.handleUpload(); this.handleChangeUrl();}}>Create</button> */}
-                <button className="btn blue lighthen-1 z-depth-0" onClick={this.handleUpload}>Confirm</button>
+                {/* <button className="btn blue lighthen-1 z-depth-0" onClick={this.handleUpload}>Confirm</button> */}
+                <br></br>
+                <br></br>
+                <button className="confirm-button" onClick={this.handleUpload}>Confirm</button>
             </div>
         </div>
         );

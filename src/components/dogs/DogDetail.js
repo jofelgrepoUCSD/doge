@@ -7,7 +7,12 @@ import DeleteDog from './DeleteDog'
 import './../../style.css'
 import React  from 'react'
 
+import firebase from 'firebase/app'
+
 const DogDetail = (props) => {
+
+    const currUser = firebase.auth().currentUser.uid;
+    const projectUser = props.project.authorId
 
     const history = useHistory();
 
@@ -16,19 +21,23 @@ const DogDetail = (props) => {
     } 
     const onButtonClick = () => {
 
-        history.push({
-            pathname: '/editForm',
-            state: { dogname: props.project.dogname, 
-                     breed: props.project.breed,
-                     age:props.project.age, 
-                     hobbies:props.project.hobbies,
-                     url:props.project.url,
-                     nicknames:props.project.nicknames,
-                     about: props.project.about,
-                     authId: props.project.authorId,
-                     identifier: props.project.identifier
-                    }
-        });
+        if (currUser === projectUser){
+            history.push({
+                pathname: '/editForm',
+                state: { dogname: props.project.dogname, 
+                         breed: props.project.breed,
+                         age:props.project.age, 
+                         hobbies:props.project.hobbies,
+                         url:props.project.url,
+                         nicknames:props.project.nicknames,
+                         about: props.project.about,
+                         authId: props.project.authorId,
+                         identifier: props.project.identifier
+                        }
+            });
+        } else {
+            alert("Access Denied you don't own this doggo");
+        }
     }
 
     const { project } = props
@@ -39,7 +48,7 @@ const DogDetail = (props) => {
                     <div className="card-content">
                         <button className="back-btn" onClick={handleBack}>Back</button>
                         <DeleteDog props={props}/>
-                        <button className="delete-btn" onClick={onButtonClick}>Edit</button>
+                        <button className="edit-btn" onClick={onButtonClick}>Edit</button>
                         <img src={project.url} className="dogDetailImg"alt="firebase-image"/>
                         <br></br>
                         <span className="dog-name-detail">{project.dogname}</span>
