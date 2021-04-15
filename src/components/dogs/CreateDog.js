@@ -15,8 +15,9 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import UploadImage from './UploadImage'
 import { v4 as uuidv4 } from 'uuid';
-import './../../style.css'
 
+
+import './../../style.css'
 
 class CreateDog extends Component {
 
@@ -52,8 +53,10 @@ class CreateDog extends Component {
         const { auth } = this.props
         if (!auth.uid) return <Redirect to='signin' />
         return (
+
+                
             <div className="container">
-                <form className="white" onSubmit={this.handleSubmit}>
+                <form className="edit-form" onSubmit={this.handleSubmit}>
 
                     <h5 className="addDogHeader">Add a Cute Doge</h5>
 
@@ -61,6 +64,15 @@ class CreateDog extends Component {
                         <label htmlFor="dogname">Dog Name</label>
                         <input type="text" id="dogname" onChange={this.handleChange} />
                     </div>
+
+
+                    {/* <div className="form-group">
+                        <label htmlFor="formGroupExampleInput">Default input</label>
+                        <input type="text" className="form-control" id="formGroupExampleInput"/>
+                    </div> */}
+
+
+
 
                     <div className="input-field">
                         <label htmlFor="breed">Breed</label>
@@ -87,7 +99,6 @@ class CreateDog extends Component {
                         <input type="text" id="about" onChange={this.handleChange} />
                     </div>
 
-                    {/* <ImageUpload methodfromparent={this.getDatafromChild}/> */}
                     <UploadImage methodfromparent={this.getDatafromChild}/>
 
 

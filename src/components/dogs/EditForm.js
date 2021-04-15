@@ -52,7 +52,7 @@ const EditForm = ({props,editProject}) => {
     return (
         <div>
             <div className="container">
-                <form className="white" onSubmit={handleEdit}>
+                <form className="edit-form" onSubmit={handleEdit}>
 
                     <h5 className="addDogHeader">Edit a Cute Doge</h5>
 
@@ -68,7 +68,7 @@ const EditForm = ({props,editProject}) => {
         
                     <div className="input-field">
                         <label htmlFor="breed">Breed</label>
-                        <input type="text" id="breed" onChange={e => {
+                        <input type="text" value={state.breed} id="breed" onChange={e => {
                             setState({
                                 ...state,
                                 breed: e.target.value
@@ -79,7 +79,7 @@ const EditForm = ({props,editProject}) => {
 
                     <div className="input-field">
                         <label htmlFor="age">Age</label>
-                        <input type="text" id="age" onChange={e => {
+                        <input type="text" value={state.age} id="age" onChange={e => {
                             setState({
                                 ...state,
                                 age: e.target.value
@@ -90,7 +90,7 @@ const EditForm = ({props,editProject}) => {
 
                     <div className="input-field">
                         <label htmlFor="hobbies">Hobbies</label>
-                        <input type="text" id="hobbies" onChange={e => {
+                        <input type="text" value={state.hobbies} id="hobbies" onChange={e => {
                             setState({
                                 ...state,
                                 hobbies: e.target.value
@@ -101,7 +101,7 @@ const EditForm = ({props,editProject}) => {
 
                     <div className="input-field">
                         <label htmlFor="nicknames">Nicknames</label>
-                        <input type="text" id="nicknames" onChange={e => {
+                        <input type="text" value={state.nicknames} id="nicknames" onChange={e => {
                             setState({
                                 ...state,
                                 nicknames: e.target.value
@@ -112,7 +112,7 @@ const EditForm = ({props,editProject}) => {
 
                     <div className="input-field">
                         <label htmlFor="about">About</label>
-                        <input type="text" id="about" onChange={e => {
+                        <input type="text" value={state.about} id="about" onChange={e => {
                             setState({
                                 ...state,
                                 about: e.target.value

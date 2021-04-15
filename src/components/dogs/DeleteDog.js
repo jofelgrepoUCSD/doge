@@ -20,15 +20,18 @@ const DeleteDog = ({props,deleteProject}) => {
     const handleDelete = () => {
 
         if (currUser === projectUser){
-            deleteProject(props.project);
-            history.push('/');
+            if(window.confirm('Are you sure you want to Delete this doggo? ')){
+                deleteProject(props.project);
+                history.push('/');
+            }
         }else {
             alert("Access Denied you don't own this doggo");
         }
     }
     return (
         <div>
-            <a href="#" className="delete-btn" onClick={ () => {if(window.confirm('Delete the item?')){handleDelete()};}}>Delete</a> 
+            <a href="#" className="delete-btn" onClick={handleDelete}>Delete</a> 
+            {/* <a href="#" className="delete-btn" onClick={ () => {if(window.confirm('Delete the item?')){handleDelete()};}}>Delete</a>  */}
         </div>
     )
 }
