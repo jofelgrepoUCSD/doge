@@ -40,6 +40,7 @@ class UploadImage extends Component {
               .ref("images")
               .child(this.state.image.name)
               .getDownloadURL()
+              // Url gets generated in this promise, we then set the parents "val" to urll
               .then(urll => {
                 this.props.methodfromparent(urll)
               })
@@ -56,8 +57,6 @@ class UploadImage extends Component {
                 <br></br>
                 <br></br>
                 <input type="file" id="image" onChange={this.handleChangeImage} />
-                {/* <button className="btn blue lighthen-1 z-depth-0" onClick={() => { this.handleUpload(); this.handleChangeUrl();}}>Create</button> */}
-                {/* <button className="btn blue lighthen-1 z-depth-0" onClick={this.handleUpload}>Confirm</button> */}
                 <br></br>
                 <br></br>
                 <button className="confirm-button" onClick={this.handleUpload}>Confirm</button>

@@ -3,7 +3,15 @@
  We want to store in a local state what the user type in the
  Input field
 
-Add a dog with Dogname, breed and age
+                    < SUMMARY OF THIS COMPONENT >
+1. When filling up the form, states info gets updated on handleChange (setState)
+2. We have a seperate UploadImage component, logic about uploading is handled there
+3. We want to pass data from child to parent since we want url:val AKA url:(childData)
+4. To avoid creating project with empty url state we use componentDidUpdate
+5. This only fires createProject when states are all Complete
+6. on mapDispatchToProp, createProject is dispatched this refers to projectActions(createProject)
+7. In projectActions(createProject) is tasked to do backend work to create the dog (firebase stuff)
+8. Then depending if its successful or not, it goes to projectReducer and handles it.
 
 */
 
@@ -33,17 +41,25 @@ class CreateDog extends Component {
             [e.target.id]: e.target.value
         })
     }
+    /* IMPORTANT IN REACT
+       only fires create project when there are changes on the url state
+       we do this because url state is being change on Upload Image
+    */
     componentDidUpdate(prevProps,prevState) {
         if(this.state.url !== prevState.url){
             this.props.createProject(this.state)
         }
     }
 
+    /*  This is how we collect data from child to parent
+        val will be filled in with the url in the child state (UploadImage)
+    */
     getDatafromChild = (val) =>{
         this.setState({url:val})
         this.props.history.push('/')
     }
 
+    // submit button needs e.preventDefault so avoid loading the page.
     handleSubmit = (e) => {
         e.preventDefault();
     }
@@ -64,14 +80,6 @@ class CreateDog extends Component {
                         <label htmlFor="dogname">Dog Name</label>
                         <input type="text" id="dogname" onChange={this.handleChange} />
                     </div>
-
-
-                    {/* <div className="form-group">
-                        <label htmlFor="formGroupExampleInput">Default input</label>
-                        <input type="text" className="form-control" id="formGroupExampleInput"/>
-                    </div> */}
-
-
 
 
                     <div className="input-field">
@@ -101,7 +109,6 @@ class CreateDog extends Component {
 
                     <UploadImage methodfromparent={this.getDatafromChild}/>
 
-
                 </form>
             </div>
         )
@@ -116,8 +123,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProp = (dispatch) => {
     return {
-        // dispatch(createProject(project))
-        // refers to the action creator on projectAction
+        /* dispatch(createProject(project))
+         refers to the action creator on projectActions
+        */
         createProject: (project) => dispatch(createProject(project))
     }
 }

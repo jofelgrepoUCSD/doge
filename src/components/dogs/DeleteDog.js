@@ -19,6 +19,7 @@ const DeleteDog = ({props,deleteProject}) => {
 
     const handleDelete = () => {
 
+        // Checks if current user is owner of the dog
         if (currUser === projectUser){
             if(window.confirm('Are you sure you want to Delete this doggo? ')){
                 deleteProject(props.project);

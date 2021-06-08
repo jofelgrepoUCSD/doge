@@ -1,3 +1,15 @@
+/*
+    (subscribed)
+          - - - - - - > Java Script App - - - - - -
+         |                    |                    |(dispatch)
+         |                    |                    |
+    Redux Store  < -  -  -  - X                  Action
+         ^                  (no!)                  |
+         |                                         |
+         |                                         |
+          - - - - - - - -  Reducer < - - - - - - - 
+
+*/
 const initState = {
     // dummy data
     projects: [
